@@ -25,7 +25,7 @@ function Login() {
 
       console.log('Logging in with:', { email, password, endpoint });
       const response = await axios.post<{ token: string; hospitalId?: string; patientId?: string; doctorId?: string }>(
-        `http://localhost:3000${endpoint}`,
+        `https://healthsphere-yfr0.onrender.com${endpoint}`,
         { email, password }
       );
 
@@ -41,7 +41,7 @@ function Login() {
       } else if (userType === 'patient' && response.data.patientId) {
         localStorage.setItem('patientId', response.data.patientId);
       } else if (userType === 'doctor' && response.data.doctorId) {
-        localStorage.setItem('doctorId', response.data.doctorId); // Optional, if doctor login returns doctorId
+        localStorage.setItem('doctorId', response.data.doctorId);
       }
 
       console.log(`${userType} login success:`, {
